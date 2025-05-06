@@ -20,27 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-#define HSV_AZURE       132, 102, 255
-#define HSV_BLACK         0,   0,   0
-#define HSV_BLUE        170, 255, 255
-#define HSV_CHARTREUSE   64, 255, 255
-#define HSV_CORAL        11, 176, 255
-#define HSV_CYAN        128, 255, 255
-#define HSV_GOLD         36, 255, 255
-#define HSV_GOLDENROD    30, 218, 218
-#define HSV_GREEN        85, 255, 255
-#define HSV_MAGENTA     213, 255, 255
-#define HSV_ORANGE       21, 255, 255
-#define HSV_PINK        234, 128, 255
-#define HSV_PURPLE      191, 255, 255
-#define HSV_RED           0, 255, 255
-#define HSV_SPRINGGREEN 106, 255, 255
-#define HSV_TEAL        128, 255, 128
-#define HSV_TURQUOISE   123,  90, 112
-#define HSV_WHITE         0,   0, 255
-#define HSV_YELLOW       43, 255, 255
-#define HSV_OFF         HSV_BLACK
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
@@ -86,16 +65,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     uint8_t layer = biton32(state);
     switch (layer) {
         case 0:
-            rgblight_sethsv(HSV_TURQUOISE);
+            rgblight_sethsv(HSV_CYAN);
             break;
         case 1:
             rgblight_sethsv(HSV_GREEN);
             break;
         case 2:
-            rgblight_sethsv(HSV_CYAN);
+            rgblight_sethsv(HSV_PURPLE);
             break;
         case 3:
-            rgblight_sethsv(HSV_PURPLE);
+            rgblight_sethsv(HSV_TURQUOISE);
             break;
     }
 
