@@ -20,39 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-#ifdef LAYER_LED_ENABLE
-#include "layer_led.c"
-#endif
-
-enum my_keyball_keycodes {
-    LAY_TOG = KEYBALL_SAFE_RANGE,
-};
-
-// キーマップの任意の場所に「LAY_TOG」を追加(機能の有効無効切り替えキー)
-// 例：
-//  [3] = LAYOUT_universal(
-//    RGB_TOG  , LAY_TOG  , 
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    // 既存処理 ...
-
-    change_layer_led_color(state);
-
-    return state;
-}
-
-// 切り替え処理
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        #ifdef LAYER_LED_ENABLE
-        case LAY_TOG: toggle_layer_led(record->event.pressed); return true;
-        #endif
-        default: break;
-    }
-    return true;
-}
-
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
@@ -85,6 +52,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
+#ifdef LAYER_LED_ENABLE
+#include "layer_led.c"
+#endif
+
+enum my_keyball_keycodes {
+    LAY_TOG = KEYBALL_SAFE_RANGE,
+};
+
+// キーマップの任意の場所に「LAY_TOG」を追加(機能の有効無効切り替えキー)
+// 例：
+//  [3] = LAYOUT_universal(
+//    RGB_TOG  , LAY_TOG  , 
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // 既存処理 ...
+
+    change_layer_led_color(state);
+
+    return state;
+}
+
+// 切り替え処理
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        #ifdef LAYER_LED_ENABLE
+        case LAY_TOG: toggle_layer_led(record->event.pressed); return true;
+        #endif
+        default: break;
+    }
+    return true;
+}
+
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
